@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add("search", (value) => {
+  // 1. Comando personalizado "cy.search" definido con el nombre "search" y un parámetro "value".
+
+  cy.fixture("index").then((index) => {
+    // 2. Cargando el archivo de fixture "index" para obtener datos relacionados con la búsqueda.
+
+    cy.get(index.searchBox).type(value);
+    // 3. Obteniendo el elemento de la caja de búsqueda usando el selector almacenado en "index.searchBox".
+    // 4. Escribiendo el valor "value" (término de búsqueda) en la caja de búsqueda.
+
+    cy.get(index.searchButton).click();
+    // 5. Obteniendo el botón de búsqueda usando el selector almacenado en "index.searchButton".
+    // 6. Haciendo clic en el botón de búsqueda para iniciar la búsqueda.
+  });
+});
